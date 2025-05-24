@@ -1,0 +1,77 @@
+package main
+
+import (
+	"fmt"
+)
+
+type Nodo struct {
+	valor    int
+	nextNodo *Nodo
+}
+
+type Pila struct {
+	tope *Nodo
+	size int
+}
+
+func vacia() *Pila {
+	return &Pila{
+		tope: nil,
+		size: 0,
+	}
+}
+
+func (p *Pila) apilar(element int) {
+	p.tope = &Nodo{
+		valor:    element,
+		nextNodo: p.tope,
+	}
+	p.size++
+}
+
+func (p *Pila) esVacia() bool {
+	return p.tope == nil
+}
+
+func (p *Pila) getSize() int {
+	return p.size
+}
+
+func (p *Pila) desapilar() int {
+	if p.esVacia() {
+		fmt.Println("Error: la pila está vacía.")
+		return -1
+	}
+	valor := p.tope.valor
+	p.tope = p.tope.nextNodo
+	p.size--
+	return valor
+}
+
+func (p *Pila) getTop() int {
+	if p.esVacia() {
+		fmt.Println("La pila está vacía.")
+		return -1
+	}
+	return p.tope.valor
+}
+
+func main() {
+	/*
+	pila := vacia()
+	pila.apilar(50)
+	pila.apilar(30)
+	pila.apilar(20)
+
+	fmt.Println("Tope:", pila.getTop())    // Debería imprimir 20
+	fmt.Println("Tamaño:", pila.getSize()) // Debería imprimir 3
+
+	fmt.Println("Desapilar:", pila.desapilar()) // 20
+	fmt.Println("Desapilar:", pila.desapilar()) // 30
+
+	fmt.Println("Tope:", pila.getTop())     // Debería imprimir 50
+	fmt.Println("Tamaño:", pila.getSize())  // Debería imprimir 1
+	fmt.Println("¿Vacía?:", pila.esVacia()) // Debería imprimir false
+	*/
+}
+p *pila

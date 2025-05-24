@@ -1,0 +1,18 @@
+package main
+
+import (
+	"fmt"
+)
+
+func sumaRecursiva(m,n int) int {
+	if n == m {
+		return 0
+	}
+
+	return n + sumaRecursiva(m, n-1)
+}
+
+func main() {
+	fmt.Print(sumaRecursiva(7, 15))
+
+}

@@ -1,0 +1,14 @@
+package main
+import (
+	"fmt"
+)
+func cuentaRegresiva(n int)int{
+	if n == 0 {
+		return 0
+	}
+	fmt.Print(n," ")
+	return cuentaRegresiva(n-1)
+}
+func main(){
+	fmt.Println(cuentaRegresiva(9))
+}

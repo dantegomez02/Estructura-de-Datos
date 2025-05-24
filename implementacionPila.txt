@@ -1,0 +1,76 @@
+package main
+
+import (
+	"fmt"
+)
+
+type Nodo struct { //definimos la struct nodo para despues poder implementar la pila como nodos
+
+	valor    int
+	nextNodo *Nodo
+}
+
+type Pila struct { //definimos la struct pila
+	tope *Nodo
+	size int
+}
+
+func vacia() *Pila { //creamos la pila vacia
+	var p Pila //generadores
+	p.tope = nil
+	return &p
+}
+
+func (p *Pila) apilar(element int) { //otras operaciones
+	p.tope = &Nodo{
+		valor:    element,
+		nextNodo: p.tope,
+	}
+	p.size++
+}
+
+func (p *Pila) esVacia() bool { //consultamos si la pila se encuentra o no vacia
+	if p.tope == nil {
+		return true
+	} //observadores basicos
+	return false
+}
+
+func (p *Pila) getSize() int { //observadores basicos
+	return p.size
+}
+
+func (p *Pila) desapilar() int { //otras operaciones
+	if p.tope == nil {
+		//fmt.Println("Error: la pila estávacía.")
+		return -1
+	}
+	valor := p.tope.valor
+	p.tope = p.tope.nextNodo
+	p.size--
+	return valor
+}
+
+func (p *Pila) getTop() int { //observadores basicos
+	if p.tope == nil {
+		fmt.Println("La pila está vacía.")
+		return -1
+	}
+	return p.tope.valor
+}
+
+func main() {
+	/*
+	pila := vacia()
+	pila.apilar(50)
+
+	fmt.Println("el programa finalizo. ")
+	*/
+}
+
+/*
+//punteros en GO
+var x int = 10
+var p* int = &x 								//p apunta a la direccion de x
+fmt.println(*p) 								//imprime 10 (contenido al que apunta p)
+*/
