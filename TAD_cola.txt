@@ -1,0 +1,54 @@
+package main
+
+import (
+	"fmt"
+)
+
+type Nodo struct {
+	dato      int
+	siguiente *Nodo
+}
+type Cola struct {
+	primerNodo *Nodo
+	ultimoNodo *Nodo
+	size       int
+}
+
+func (c *Cola) encolar(d int) {
+	nuevoNodo := &Nodo{
+		dato:      d,
+		siguiente: nil,
+	}
+	if c.size == 0 {
+		c.primerNodo = nuevoNodo
+	} else {
+		c.ultimoNodo.siguiente = nuevoNodo
+	}
+	c.ultimoNodo = nuevoNodo
+	c.size++
+}
+
+func (c *Cola) desencolar() {
+	if c.size == 1 {
+		c.primerNodo = nil
+		c.ultimoNodo = nil
+	} else {
+		c.primerNodo = c.primerNodo.siguiente
+
+	}
+	c.size--
+}
+
+func (c *Cola) tamanio() int {
+	return c.size
+}
+
+func main() {
+	c := &Cola{}
+	c.encolar(30)
+	c.encolar(20)
+	c.encolar(15)
+	c.desencolar()
+	fmt.Println(c.tamanio())
+
+}

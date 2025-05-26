@@ -1,0 +1,73 @@
+package main
+
+import (
+	"fmt"
+)
+
+type Nodo struct {
+	dato int
+	siguiente *Nodo
+}
+type Conjunto struct {
+	actual *Nodo
+}
+
+//insertar y quitar sin recursividad
+func (c *Conjunto)insertar(num int){
+	nuevoNodo := &Nodo{
+	dato:      num,
+	siguiente: nil,
+	}
+	nuevoNodo.siguiente = c.actual
+	c.actual = nuevoNodo
+
+}
+func (c *Conjunto)quitar(num int){
+	if (c.actual.dato == num){
+		c.actual = c.actual.siguiente
+		return
+	}
+	for i := c.actual; i != nil; i = i.siguiente {
+		if(i.siguiente.dato == num){
+			x := i.siguiente
+			i.siguiente = x.siguiente
+			return
+		}
+		
+	}
+}
+
+//insertar y quitar recursivo
+func (c *Conjunto)insertarRecursivo(num int){
+	if(c.actual.siguiente == nil){
+		nuevoNodo := &Nodo{
+			dato: num,
+			siguiente: nil,
+		}
+		c.actual.siguiente = nuevoNodo
+		return
+	}
+	c.actual = c.actual.siguiente
+	c.insertarRecursivo(num)
+}
+func(c *Conjunto)quitarRecursivo(num int){
+	if c.actual.dato == num{
+		c.actual = c.actual.siguiente
+	}
+	if(c.actual.siguiente == nil){
+		return
+	}
+	if(c.actual.siguiente.dato == num){
+		x := c.actual.siguiente
+		c.actual.siguiente = x.siguiente
+		return
+	}
+	c.actual = c.actual.siguiente
+	c.quitarRecursivo(num)
+}
+
+func main(){
+
+
+
+}

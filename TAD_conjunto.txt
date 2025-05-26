@@ -1,0 +1,43 @@
+package main
+
+import (
+	"fmt"
+)
+
+
+type Nodo struct{
+	dato int
+	siguiente *Nodo
+}
+type Conjunto struct{
+	actual *Nodo
+}
+
+
+func (c *Conjunto)size()int{
+	contador := 0
+	if c.actual == nil {
+		return contador
+	}
+	c.actual = c.actual.siguente
+	contador = 1+ c.size(c.actual)
+
+}
+
+func (c *Conjunto)contiene(buscado int)bool{
+	if c.actual == nil {
+		return false
+	}
+	if c.actual.dato == buscado {
+		return true
+	}
+	c.actual = c.actual.siguiente
+	return c.contiene(buscado)
+}
+
+func main(){
+
+
+
+
+}
